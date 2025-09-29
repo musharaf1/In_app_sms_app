@@ -1,17 +1,22 @@
-# inapp_sms
+# 📱 inapp_sms
 
-A new Flutter project.
+_A simple blog app to showcase clean architecture, BLoC and Cubit SM._  
 
-## Getting Started
+## ✨ Features  
+- 🚀 Built with **Flutter** using **Clean Architecture**  
+- ⚡️ State management with **Bloc & Cubit**  
+- ☁️ Backend powered by **Supabase**  
+- 📱 Cross-platform (Android, iOS, Web, Desktop)  
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
+## 🏗️ Architecture Overview  
+This project follows **Clean Architecture** principles:  
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+- **Presentation Layer** → Flutter UI with Bloc/Cubit for state management  
+- **Domain Layer** → Business logic & use cases  
+- **Data Layer** → Repository pattern, Supabase integration  
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
-# In_app_sms_app
+📌 **Benefits:**  
+- Separation of concerns  
+- Easier testing & scaling  
+- Maintainable and modular codebase  
