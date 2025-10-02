@@ -13,10 +13,17 @@ class AppTheme {
     inputDecorationTheme: InputDecorationThemeData(
       contentPadding: const EdgeInsets.all(27),
       enabledBorder: _border(),
-
+      border: _border(),
       focusedBorder: _border(AppPallet.formError),
+
+      errorBorder: _border(AppPallet.formError),
     ),
 
     appBarTheme: AppBarTheme(backgroundColor: AppPallet.universalBlack),
+
+    chipTheme: ChipThemeData(
+      color: WidgetStatePropertyAll(AppPallet.universalBlack),
+      side: BorderSide.none,
+    ),
   );
 }

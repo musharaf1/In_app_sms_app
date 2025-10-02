@@ -4,6 +4,8 @@ import 'package:inapp_sms/core/common/cubits/app_user/app_user_cubit.dart';
 import 'package:inapp_sms/feature/auth/presentation/bloc/auth_bloc.dart';
 import 'package:inapp_sms/feature/auth/presentation/pages/login_page.dart';
 import 'package:inapp_sms/core/theme/theme.dart';
+import 'package:inapp_sms/feature/blog/presentation/bloc/blog_bloc.dart';
+import 'package:inapp_sms/feature/blog/presentation/pages/blog_page.dart';
 import 'package:inapp_sms/init_dependencies.dart';
 
 void main() async {
@@ -14,6 +16,7 @@ void main() async {
       providers: [
         BlocProvider(create: (_) => serviceLocator<AppUserCubit>()),
         BlocProvider(create: (_) => serviceLocator<AuthBloc>()),
+        BlocProvider(create: (_) => serviceLocator<BlogBloc>()),
       ],
       child: const MyApp(),
     ),
@@ -47,7 +50,7 @@ class _MyAppState extends State<MyApp> {
         },
         builder: (context, isLoggedIn) {
           if (isLoggedIn) {
-            return Scaffold(body: Center(child: Text("Welcome to Home")));
+            return const BlogPage();
           }
           return const LoginPage();
         },
