@@ -1,5 +1,6 @@
 import 'package:inapp_sms/core/error/exception.dart';
 import 'package:inapp_sms/core/error/failure.dart';
+import 'package:inapp_sms/core/network/connection_checker.dart';
 import 'package:inapp_sms/feature/auth/data/datasources/auth_remote_datasource.dart';
 import 'package:inapp_sms/feature/auth/data/model/user_model.dart';
 import 'package:inapp_sms/feature/auth/domain/repository/auth_repository.dart';
@@ -10,11 +11,29 @@ import 'package:supabase_flutter/supabase_flutter.dart' as sb;
 class AuthRepositoriesImpl implements AuthRepository {
   final AuthRemoteDatasource authRemoteDatasource;
 
-  AuthRepositoriesImpl(this.authRemoteDatasource);
+  final ConnectionChecker connectionChecker;
+
+  AuthRepositoriesImpl(this.authRemoteDatasource, this.connectionChecker);
 
   @override
   Future<Either<Failure, User>> getCurrentUser() async {
     try {
+      if (!await (connectionChecker.isConnected)) {
+        final session = authRemoteDatasource.currentUserSession;
+
+        if (session == null) {
+          return left(Failure('User not logged in'));
+        }
+
+        return right(
+          UserModel(
+            id: session.user.id,
+            email: session.user.email ?? "",
+            name: '',
+          ),
+        );
+      }
+
       final user = await authRemoteDatasource.getCurrentUserData();
 
       if (user == null) {
@@ -59,6 +78,10 @@ class AuthRepositoriesImpl implements AuthRepository {
     Future<UserModel> Function() fn,
   ) async {
     try {
+      if (!await (connectionChecker.isConnected)) {
+        return left(Failure('No internet connection'));
+      }
+
       final user = await fn();
 
       return right(user);

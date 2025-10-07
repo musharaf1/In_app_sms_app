@@ -14,3 +14,15 @@ final class BlogFailure extends BlogState {
 }
 
 final class BlogSuccess extends BlogState {}
+
+final class GetAllBlogSuccess extends BlogState {
+  final List<Blog> blogs;
+
+  GetAllBlogSuccess(this.blogs);
+}
+
+final class GetAllBlogFailure extends BlogState {
+  final String error;
+
+  GetAllBlogFailure(this.error);
+}

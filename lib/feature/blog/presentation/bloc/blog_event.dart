@@ -19,4 +19,6 @@ class UploadBlogEvent extends BlogEvent {
   );
 }
 
-sealed class UploadImage extends BlogEvent {}
+class GetAllBlogsEvent extends BlogEvent {}
+
+// sealed class UploadImage extends BlogEvent {}
